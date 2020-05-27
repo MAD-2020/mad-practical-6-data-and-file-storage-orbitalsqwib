@@ -24,10 +24,12 @@ public class MainActivity extends AppCompatActivity {
      */
 
     // View objects
-    EditText UsernameEditText;
-    EditText PasswordEditText;
-    Button LoginButton;
-    Button SignUpButton;
+    private EditText UsernameEditText;
+    private EditText PasswordEditText;
+    private Button LoginButton;
+    private Button SignUpButton;
+
+    private MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
 
     private static final String FILENAME = "MainActivity.java";
     private static final String TAG = "Whack-A-Mole3.0!";
@@ -100,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
             Log.v(TAG, FILENAME + ": Running Checks..." + dbData.getMyUserName() + ": " + dbData.getMyPassword() +" <--> "+ userName + " " + password);
             You may choose to use this or modify to suit your design.
          */
-
-        MyDBHandler dbHandler = new MyDBHandler(getApplicationContext(), null, null, 1);
         UserData userData = dbHandler.findUser(userName);
 
         if (userData == null) {

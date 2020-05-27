@@ -26,13 +26,15 @@ public class Main2Activity extends AppCompatActivity {
      */
 
     // View objects
-    EditText SignUpUsernameEditText;
-    EditText SignUpPasswordEditText;
-    Button ConfirmSignUpButton;
-    Button CancelButton;
+    private EditText SignUpUsernameEditText;
+    private EditText SignUpPasswordEditText;
+    private Button ConfirmSignUpButton;
+    private Button CancelButton;
 
     private static final String FILENAME = "Main2Activity.java";
     private static final String TAG = "Whack-A-Mole3.0!";
+
+    private MyDBHandler dbHandler = new MyDBHandler(getApplicationContext(), null, null, 1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,6 @@ public class Main2Activity extends AppCompatActivity {
                 String usernameInput = SignUpUsernameEditText.getText().toString();
                 String passwordInput = SignUpPasswordEditText.getText().toString();
 
-                MyDBHandler dbHandler = new MyDBHandler(getApplicationContext(), null, null, 1);
                 if (dbHandler.findUser(usernameInput) != null) {
                     // Handle error and return
                     Log.v(TAG, FILENAME + ": User already exist during new user creation!");

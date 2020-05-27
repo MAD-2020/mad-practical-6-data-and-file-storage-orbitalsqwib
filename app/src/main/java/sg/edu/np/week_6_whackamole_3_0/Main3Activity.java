@@ -32,14 +32,16 @@ public class Main3Activity extends AppCompatActivity {
     }
 
     //View objects
-    RecyclerView ListSelectionRecyclerView;
-    Button ExitToLoginButton;
+    private RecyclerView ListSelectionRecyclerView;
+    private Button ExitToLoginButton;
 
     private String userName;
     private CustomScoreAdaptor adaptor;
 
     private static final String FILENAME = "Main3Activity.java";
     private static final String TAG = "Whack-A-Mole3.0!";
+
+    private MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,6 @@ public class Main3Activity extends AppCompatActivity {
 
         Log.v(TAG, FILENAME + ": Show level for User: "+ userName);
 
-        MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
         UserData userData = dbHandler.findUser(userName);
 
         adaptor = new CustomScoreAdaptor(userData);

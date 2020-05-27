@@ -39,8 +39,8 @@ public class Main4Activity extends AppCompatActivity {
     private static final String FILENAME = "Main4Activity.java";
     private static final String TAG = "Whack-A-Mole3.0!";
 
-    CountDownTimer readyTimer;
-    CountDownTimer newMolePlaceTimer;
+    private CountDownTimer readyTimer;
+    private CountDownTimer newMolePlaceTimer;
 
     private final List<Button> buttonList = new ArrayList<>();
     private static final int[] STANDARD_BUTTON_IDS = {
@@ -60,6 +60,8 @@ public class Main4Activity extends AppCompatActivity {
 
     private Integer levelNum;
     private String userName;
+
+    private MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
 
     private void readyTimer(){
         /*  HINT:
@@ -211,7 +213,6 @@ public class Main4Activity extends AppCompatActivity {
             readyTimer.cancel();
         } catch (NullPointerException e) { }
 
-        MyDBHandler dbHandler = new MyDBHandler(this, null, null, 1);
         UserData newUserData = dbHandler.findUser(userName);
         newUserData.getScores().set(levelNum-1, moleGame.getScore());
 
